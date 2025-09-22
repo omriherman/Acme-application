@@ -127,8 +127,6 @@ export default function ActivationChecklist() {
     }
   }, [isFullyCompleted]);
 
-  return null;
-
   return (
     <Collapse in={isVisible}>
       <Box sx={{ mb: 3 }}>
