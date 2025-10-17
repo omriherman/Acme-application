@@ -108,3 +108,7 @@ dist
 
 # wincompare file
 .bak
+
+.claude/
+
+.spring-installation-id
