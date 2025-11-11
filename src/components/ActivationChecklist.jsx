@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
@@ -127,7 +128,15 @@ export default function ActivationChecklist() {
     }
   }, [isFullyCompleted]);
 
-  return null;
+  const handleSetupClick = () => {
+    trackClick('Get Started CTA Clicked', {
+      location: 'Product Analytics',
+      section: 'Welcome Card'
+    });
+    // Navigate to setup or open modal
+    // For now, just log the action
+    console.log('Setup tracking clicked');
+  };
 
   return (
     <Collapse in={isVisible}>
@@ -135,8 +144,8 @@ export default function ActivationChecklist() {
         <MainCard
           sx={{
             border: '2px solid',
-            borderColor: isFullyCompleted ? 'success.main' : 'primary.main',
-            bgcolor: isFullyCompleted ? 'success.lighter' : 'primary.lighter',
+            borderColor: 'primary.main',
+            bgcolor: 'primary.lighter',
             '&:hover': {
               boxShadow: (theme) => theme.customShadows.z8
             }
@@ -157,119 +166,46 @@ export default function ActivationChecklist() {
               <CloseOutlined style={{ fontSize: '14px' }} />
             </IconButton>
 
-            <Stack spacing={2}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                {isFullyCompleted ? (
-                  <CheckCircleOutlined style={{ fontSize: '24px', color: '#52c41a' }} />
-                ) : (
-                  <Box
-                    sx={{
-                      width: 24,
-                      height: 24,
-                      borderRadius: '50%',
-                      bgcolor: 'primary.main',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: 'white',
-                      fontSize: '12px',
-                      fontWeight: 600
-                    }}
-                  >
-                    {completedItems.size}
-                  </Box>
-                )}
-                <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                  {isFullyCompleted ? 'Setup Complete! 🎉' : 'Complete your setup'}
+            <Stack spacing={2.5}>
+              <Box>
+                <Typography variant="h5" sx={{ fontWeight: 600, mb: 1 }}>
+                  👋 Welcome! Let's get you set up
                 </Typography>
-              </Box>
-
-              {!isFullyCompleted && (
                 <Typography variant="body2" color="text.secondary">
-                  Get the most out of your dashboard by completing these steps
-                </Typography>
-              )}
-
-              <Box sx={{ width: '100%' }}>
-                <LinearProgress
-                  variant="determinate"
-                  value={completionPercentage}
-                  sx={{
-                    height: 6,
-                    borderRadius: 3,
-                    bgcolor: 'grey.200',
-                    '& .MuiLinearProgress-bar': {
-                      bgcolor: isFullyCompleted ? 'success.main' : 'primary.main',
-                      borderRadius: 3
-                    }
-                  }}
-                />
-                <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: 'block' }}>
-                  {completedItems.size} of {checklistItems.length} completed
+                  Install our tracking code to start seeing real analytics data from your application
                 </Typography>
               </Box>
 
-              <List sx={{ py: 0 }}>
-                {checklistItems.map((item) => {
-                  const ItemIcon = item.icon;
-                  const isCompleted = completedItems.has(item.id);
-
-                  return (
-                    <ListItem
-                      key={item.id}
-                      sx={{
-                        px: 0,
-                        py: 1,
-                        cursor: 'pointer',
-                        borderRadius: 1,
-                        '&:hover': { bgcolor: 'action.hover' },
-                        opacity: isCompleted ? 0.7 : 1
-                      }}
-                      onClick={() => handleItemClick(item)}
-                    >
-                      <ListItemIcon sx={{ minWidth: 40 }}>
-                        <Checkbox
-                          edge="start"
-                          checked={isCompleted}
-                          tabIndex={-1}
-                          disableRipple
-                          sx={{
-                            '&.Mui-checked': {
-                              color: 'success.main'
-                            }
-                          }}
-                        />
-                      </ListItemIcon>
-                      <ListItemIcon sx={{ minWidth: 36 }}>
-                        <ItemIcon
-                          style={{
-                            fontSize: '18px',
-                            color: isCompleted ? '#52c41a' : '#666'
-                          }}
-                        />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={
-                          <Typography
-                            variant="subtitle2"
-                            sx={{
-                              textDecoration: isCompleted ? 'line-through' : 'none',
-                              fontWeight: isCompleted ? 400 : 500
-                            }}
-                          >
-                            {item.title}
-                          </Typography>
-                        }
-                        secondary={
-                          <Typography variant="caption" color="text.secondary">
-                            {item.description}
-                          </Typography>
-                        }
-                      />
-                    </ListItem>
-                  );
-                })}
-              </List>
+              <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={handleSetupClick}
+                  sx={{
+                    textTransform: 'none',
+                    fontWeight: 600,
+                    px: 3
+                  }}
+                >
+                  Set Up Tracking
+                </Button>
+                <Button
+                  variant="text"
+                  size="large"
+                  onClick={() => {
+                    trackClick('View Documentation Link', {
+                      location: 'Product Analytics',
+                      section: 'Welcome Card'
+                    });
+                  }}
+                  sx={{
+                    textTransform: 'none',
+                    color: 'text.secondary'
+                  }}
+                >
+                  View documentation
+                </Button>
+              </Box>
             </Stack>
           </Box>
         </MainCard>
