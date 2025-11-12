@@ -73,31 +73,62 @@ export default function DashboardDefault() {
 
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-      {/* row 1 */}
+      {/* row 1 - Activation Hero */}
       <Grid sx={{ mb: -2.25 }} size={12}>
         <Typography variant="h5">Dashboard</Typography>
       </Grid>
       <Grid size={12}>
         <ActivationChecklist />
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+
+      {/* Preview Section - Dimmed to show it's demo data */}
+      <Grid size={12} sx={{ mt: 3 }}>
+        <Box sx={{
+          borderTop: '1px solid',
+          borderColor: 'divider',
+          pt: 3,
+          opacity: 0.6,
+          transition: 'opacity 0.3s',
+          '&:hover': { opacity: 0.8 }
+        }}>
+          <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
+            <Typography variant="h6" color="text.secondary">
+              📊 Preview: Sample Dashboard
+            </Typography>
+            <Typography variant="caption" color="text.secondary" sx={{
+              bgcolor: 'grey.100',
+              px: 1.5,
+              py: 0.5,
+              borderRadius: 1,
+              fontWeight: 500
+            }}>
+              Demo Data
+            </Typography>
+          </Stack>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+            Complete the checklist above to see your real data here
+          </Typography>
+        </Box>
+      </Grid>
+
+      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} sx={{ opacity: 0.6 }}>
         <AnalyticEcommerce title="Total Page Views" count="4,42,236" percentage={59.3} extra="35,000" />
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} sx={{ opacity: 0.6 }}>
         <AnalyticEcommerce title="Total Users" count="78,250" percentage={70.5} extra="8,900" />
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} sx={{ opacity: 0.6 }}>
         <AnalyticEcommerce title="Total Order" count="18,800" percentage={27.4} isLoss color="warning" extra="1,943" />
       </Grid>
-      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} sx={{ opacity: 0.6 }}>
         <AnalyticEcommerce title="Total Sales" count="35,078" percentage={27.4} isLoss color="warning" extra="20,395" />
       </Grid>
       <Grid sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} size={{ md: 8 }} />
       {/* row 2 */}
-      <Grid size={{ xs: 12, md: 7, lg: 8 }}>
+      <Grid size={{ xs: 12, md: 7, lg: 8 }} sx={{ opacity: 0.6 }}>
         <UniqueVisitorCard />
       </Grid>
-      <Grid size={{ xs: 12, md: 5, lg: 4 }}>
+      <Grid size={{ xs: 12, md: 5, lg: 4 }} sx={{ opacity: 0.6 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid>
             <Typography variant="h5">Income Overview</Typography>
@@ -117,7 +148,7 @@ export default function DashboardDefault() {
         </MainCard>
       </Grid>
       {/* row 3 */}
-      <Grid size={{ xs: 12, md: 7, lg: 8 }}>
+      <Grid size={{ xs: 12, md: 7, lg: 8 }} sx={{ opacity: 0.6 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid>
             <Typography variant="h5">Recent Orders</Typography>
@@ -128,7 +159,7 @@ export default function DashboardDefault() {
           <OrdersTable />
         </MainCard>
       </Grid>
-      <Grid size={{ xs: 12, md: 5, lg: 4 }}>
+      <Grid size={{ xs: 12, md: 5, lg: 4 }} sx={{ opacity: 0.6 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid>
             <Typography variant="h5">Analytics Report</Typography>
@@ -154,10 +185,10 @@ export default function DashboardDefault() {
         </MainCard>
       </Grid>
       {/* row 4 */}
-      <Grid size={{ xs: 12, md: 7, lg: 8 }}>
+      <Grid size={{ xs: 12, md: 7, lg: 8 }} sx={{ opacity: 0.6 }}>
         <SaleReportCard />
       </Grid>
-      <Grid size={{ xs: 12, md: 5, lg: 4 }}>
+      <Grid size={{ xs: 12, md: 5, lg: 4 }} sx={{ opacity: 0.6 }}>
         <Grid container alignItems="center" justifyContent="space-between">
           <Grid>
             <Typography variant="h5">Transaction History</Typography>
