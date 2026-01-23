@@ -80,6 +80,79 @@ export default function DashboardDefault() {
       <Grid size={12}>
         <ActivationChecklist />
       </Grid>
+
+      {/* Hero CTA Banner */}
+      <Grid size={12}>
+        <MainCard
+          sx={{
+            bgcolor: 'primary.main',
+            color: 'white',
+            border: 'none'
+          }}
+        >
+          <Box sx={{ py: 4, px: 3, textAlign: 'center' }}>
+            <Typography variant="h3" sx={{ mb: 1.5, fontWeight: 600, color: 'white' }}>
+              Ready to get started?
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 3.5, color: 'rgba(255, 255, 255, 0.9)', maxWidth: 600, mx: 'auto' }}>
+              Create your first order and start tracking your business performance in real-time.
+            </Typography>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ justifyContent: 'center', alignItems: 'center' }}>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  bgcolor: 'white',
+                  color: 'primary.main',
+                  px: 4,
+                  py: 1.5,
+                  fontWeight: 600,
+                  textTransform: 'none',
+                  fontSize: '1rem',
+                  minWidth: 200,
+                  '&:hover': {
+                    bgcolor: 'rgba(255, 255, 255, 0.9)'
+                  }
+                }}
+                onClick={() =>
+                  trackClick('Create First Order CTA', {
+                    location: 'Dashboard',
+                    section: 'Hero Banner'
+                  })
+                }
+              >
+                Create Your First Order
+              </Button>
+              <Button
+                variant="outlined"
+                size="large"
+                sx={{
+                  borderColor: 'white',
+                  color: 'white',
+                  px: 4,
+                  py: 1.5,
+                  textTransform: 'none',
+                  fontSize: '1rem',
+                  minWidth: 200,
+                  '&:hover': {
+                    borderColor: 'white',
+                    bgcolor: 'rgba(255, 255, 255, 0.1)'
+                  }
+                }}
+                onClick={() =>
+                  trackClick('Learn More CTA', {
+                    location: 'Dashboard',
+                    section: 'Hero Banner'
+                  })
+                }
+              >
+                Learn More
+              </Button>
+            </Stack>
+          </Box>
+        </MainCard>
+      </Grid>
+
       <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
         <AnalyticEcommerce title="Total Page Views" count="4,42,236" percentage={59.3} extra="35,000" />
       </Grid>
