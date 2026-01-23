@@ -12,12 +12,15 @@ import { LineChart } from '@mui/x-charts/LineChart';
 // Sample data
 const monthlyLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const weeklyLabels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const quarterlyLabels = ['Q1', 'Q2', 'Q3', 'Q4'];
 
 const monthlyData1 = [76, 85, 101, 98, 87, 105, 91, 114, 94, 86, 115, 35];
 const weeklyData1 = [31, 40, 28, 51, 42, 109, 100];
+const quarterlyData1 = [87, 97, 99, 79];
 
 const monthlyData2 = [110, 60, 150, 35, 60, 36, 26, 45, 65, 52, 53, 41];
 const weeklyData2 = [11, 32, 45, 32, 34, 52, 41];
+const quarterlyData2 = [107, 44, 47, 49];
 
 function Legend({ items, onToggle }) {
   return (
@@ -49,9 +52,9 @@ export default function IncomeAreaChart({ view }) {
     Sessions: true
   });
 
-  const labels = view === 'monthly' ? monthlyLabels : weeklyLabels;
-  const data1 = view === 'monthly' ? monthlyData1 : weeklyData1;
-  const data2 = view === 'monthly' ? monthlyData2 : weeklyData2;
+  const labels = view === 'monthly' ? monthlyLabels : view === 'quarterly' ? quarterlyLabels : weeklyLabels;
+  const data1 = view === 'monthly' ? monthlyData1 : view === 'quarterly' ? quarterlyData1 : weeklyData1;
+  const data2 = view === 'monthly' ? monthlyData2 : view === 'quarterly' ? quarterlyData2 : weeklyData2;
 
   const line = theme.palette.divider;
 
@@ -128,4 +131,4 @@ export default function IncomeAreaChart({ view }) {
 
 Legend.propTypes = { items: PropTypes.array, onToggle: PropTypes.func };
 
-IncomeAreaChart.propTypes = { view: PropTypes.oneOf(['monthly', 'weekly']) };
+IncomeAreaChart.propTypes = { view: PropTypes.oneOf(['monthly', 'weekly', 'quarterly']) };
