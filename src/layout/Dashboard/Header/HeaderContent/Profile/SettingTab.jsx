@@ -1,9 +1,14 @@
+import { useState } from 'react';
+
 // material-ui
 import List from '@mui/material/List';
 import Link from '@mui/material/Link';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+
+// project imports
+import UserManagementModal from 'components/UserManagementModal';
 
 // assets
 import CommentOutlined from '@ant-design/icons/CommentOutlined';
@@ -15,42 +20,56 @@ import UnorderedListOutlined from '@ant-design/icons/UnorderedListOutlined';
 // ==============================|| HEADER PROFILE - SETTING TAB ||============================== //
 
 export default function SettingTab() {
+  const [openUserManagement, setOpenUserManagement] = useState(false);
+
+  const handleOpenUserManagement = () => {
+    setOpenUserManagement(true);
+  };
+
+  const handleCloseUserManagement = () => {
+    setOpenUserManagement(false);
+  };
+
   return (
-    <List component="nav" sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32 } }}>
-      <Link underline="none" sx={{ color: 'inherit' }} target="_blank" href="https://codedthemes.support-hub.io/">
+    <>
+      <List component="nav" sx={{ p: 0, '& .MuiListItemIcon-root': { minWidth: 32 } }}>
+        <Link underline="none" sx={{ color: 'inherit' }} target="_blank" href="https://codedthemes.support-hub.io/">
+          <ListItemButton>
+            <ListItemIcon>
+              <QuestionCircleOutlined />
+            </ListItemIcon>
+            <ListItemText primary="Support" />
+          </ListItemButton>
+        </Link>
+        <ListItemButton onClick={handleOpenUserManagement}>
+          <ListItemIcon>
+            <UserOutlined />
+          </ListItemIcon>
+          <ListItemText primary="Account Settings" />
+        </ListItemButton>
         <ListItemButton>
           <ListItemIcon>
-            <QuestionCircleOutlined />
+            <LockOutlined />
           </ListItemIcon>
-          <ListItemText primary="Support" />
+          <ListItemText primary="Privacy Center" />
         </ListItemButton>
-      </Link>
-      <ListItemButton>
-        <ListItemIcon>
-          <UserOutlined />
-        </ListItemIcon>
-        <ListItemText primary="Account Settings" />
-      </ListItemButton>
-      <ListItemButton>
-        <ListItemIcon>
-          <LockOutlined />
-        </ListItemIcon>
-        <ListItemText primary="Privacy Center" />
-      </ListItemButton>
-      <Link underline="none" style={{ color: 'inherit' }} target="_blank" href="https://codedthemes.support-hub.io/">
+        <Link underline="none" style={{ color: 'inherit' }} target="_blank" href="https://codedthemes.support-hub.io/">
+          <ListItemButton>
+            <ListItemIcon>
+              <CommentOutlined />
+            </ListItemIcon>
+            <ListItemText primary="Feedback" />
+          </ListItemButton>
+        </Link>
         <ListItemButton>
           <ListItemIcon>
-            <CommentOutlined />
+            <UnorderedListOutlined />
           </ListItemIcon>
-          <ListItemText primary="Feedback" />
+          <ListItemText primary="History" />
         </ListItemButton>
-      </Link>
-      <ListItemButton>
-        <ListItemIcon>
-          <UnorderedListOutlined />
-        </ListItemIcon>
-        <ListItemText primary="History" />
-      </ListItemButton>
-    </List>
+      </List>
+
+      <UserManagementModal open={openUserManagement} onClose={handleCloseUserManagement} />
+    </>
   );
 }
